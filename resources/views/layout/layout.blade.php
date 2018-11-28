@@ -8,51 +8,38 @@
 
     <link rel="stylesheet" href="css/style.css">
     {{-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous"> --}}
 </head>
 <body>
 
 <nav>
     <ul>
-      {{-- cek jika login tampilkan menu logout home dan pengeluaran --}}
-      @if (\Auth::check())
-        <li>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                {{ csrf_field() }}
-            </form>
-            <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
-              Logout
-            </a>
-        </li>
-        <li>
-        <a href="{{ route('home') }}">Home</a>
-        </li>
-        <li>
-        <a href="{{ route('pengeluaran')}}">Pengeluaran</a>
-        </li>
-      {{-- jika tidak tampilkan home --}}
-      @else
+    @foreach(App\Http\Controllers\CostController::GetCost() as $cost)
+    @if ($cost == 0)
       <li>
-          <a href="/">Home</a>
+        <a href="/">Login</a>
       </li>
       <li>
-      <a href="{{ route('login') }}">Login</a>
+        <a href="/home">Home</a>
       </li>
-      @endif
+    @else
+      <li>
+        <a href="/pengeluaran">Pengeluaran</a>
+      </li>
+    @endif
+    @endforeach
     </ul>
 </nav>
 
 <div class="container">
-  {{-- <div class="putar"></div> --}}
-  {{-- <div class="putar2"><img src="/img/logo2.png"></div> --}}
+  <div class="putar"></div>
+  <div class="putar2"><img src="/img/logo2.png"></div>
 </div>
-@yield('content')
 
-    
-
-{{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script> --}}
+    @yield('content')
 </body>
 </html>
 

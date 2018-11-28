@@ -10,15 +10,20 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::get('/', function () {
+    return view('login');
+});
 
-Auth::routes();
+Route::get('/home', function () {
+    return view('home');
+});
 
-//route ini akan memanggil fungsi index pada HomeController
-Route::get('/', 'HomeController@index')->name('home');
+Route::get('/pengeluaran', function () {
+    return view('costs');
+});
 
-//route ini akan memanggil fungsi index pada CostController
-Route::get('pengeluaran', 'CostController@index')->name('pengeluaran');
-// menampilkan halaman form tambah pengeluaran
-Route::get('tambah-pengeluaran', 'CostController@create')->name('tambah_pengeluaran');
-// menyimpan pengeluaran
-Route::post('tambah-pengeluaran', 'CostController@store')->name('simpan_pengeluaran');
+Route::get('/welcome', function () {
+    return view('welcome');
+});
+
+Route::Auth();

@@ -18,8 +18,8 @@ class CreateUsersTable extends Migration
             $table->string('name');
             $table->string('email');
             $table->string('password');
-            $table->boolean('isactive')->default(true);
-            $table->rememberToken(); // ini untuk generate column session token
+            $table->boolean('isactive');
+            $table->string('apitoken')->nullable();
             $table->timestamps();
         });
     }

@@ -1,42 +1,38 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facedes\Session;
+use Hash;
+
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
-    use AuthenticatesUsers;
-
-    /**
-     * Where to redirect users after login.
-     *
-     * @var string
-     */
-    protected $redirectTo = '/pengeluaran';
-
-    /**
-     * Create a new controller instance.
-     *
-     */
-    public function __construct()
+    public function LoginAuth(Request $request)
     {
-        $this->middleware('guest')->except('logout');
+        $user = User::where('email', $request->email)->first();
+
+        if($user)
+        {
+            if (Hash::check($request->password, $user->password)) {
+            
+                session([
+                    'data' => $user,
+                    'login_status' => true
+                ]);
+                return "login berhasil";
+            }else{
+                return "login gagal";
+            }
+        }else{
+            return "email atau password salah";
+        }
     }
 
-    public function username(){
-        return 'email';
+    public function CheckAuth(Request $request){
+        $session = $request->session()->get('data');
+        return $session;
     }
 }
