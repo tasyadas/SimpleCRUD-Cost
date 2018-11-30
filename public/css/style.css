@@ -162,7 +162,7 @@ form, .content, {
 
 .putar{
 	width: 500px;
-	height: 1000px;
+	height: 1100px;
 	background-color:#061244;
 	-webkit-transform: rotate(-40deg);
     -moz-transform: rotate(-40deg);
@@ -190,14 +190,14 @@ form, .content, {
     border-radius: 0 50% 0 0;
 	position: absolute;
 	margin-left: -380px;
-	margin-top: 200px;
+	margin-top: 350px;
 }
 
 .form {
     z-index: 15;
     position: relative;
     background: rgba(10, 1, 36, 0.171);
-    width: 600px;
+    width: 450px;
     border-radius: 4px;
     box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
     box-sizing: border-box;
@@ -257,6 +257,7 @@ form, .content, {
         -ms-flex-pack: justify;
             justify-content: space-between;
     margin: 0 0 20px;
+    padding: 0 20px 20px;
   }
   .form-group:last-child {
     margin: 0;
@@ -302,7 +303,7 @@ form, .content, {
   }
   .form-group button {
     outline: none;
-    background: #ef0202;
+    background: #4902ef;
     width: 100%;
     border: 0;
     border-radius: 4px;
@@ -336,7 +337,7 @@ form, .content, {
     text-decoration: none;
   }
   .form-panel {
-    padding: 20px calc(5% + 60px) 60px 60px;
+    padding: 40px calc(5% + 60px) 60px 90px;
     box-sizing: border-box;
   }
   

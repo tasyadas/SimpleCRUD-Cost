@@ -14,25 +14,33 @@ class LoginController extends Controller
     {
         $user = User::where('email', $request->email)->first();
 
-        if($user)
-        {
+        if ($user) {
             if (Hash::check($request->password, $user->password)) {
-            
+
                 session([
                     'data' => $user,
-                    'login_status' => true
+                    'login_status' => true,
                 ]);
-                return "login berhasil";
-            }else{
+
+                return redirect('home');
+
+            } else {
                 return "login gagal";
             }
-        }else{
+        } else {
             return "email atau password salah";
         }
     }
 
-    public function CheckAuth(Request $request){
-        $session = $request->session()->get('data');
+    public static function CheckAuth(Request $request)
+    {
+        $session = session()->get('data');
         return $session;
+    }
+
+    public function LogoutAuth(Request $request)
+    {
+        $request->session()->flush();
+        return redirect('/');
     }
 }

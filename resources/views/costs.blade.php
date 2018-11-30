@@ -10,7 +10,7 @@
 
 @endsection
 
-{{-- <div class="container" style="margin-top:5em;">
+<div class="container" style="margin-top:5em;">
         <div class="row">
             <div class="col-md-3" style="background-color:black; border-radius: 2em 0 0 2em;">
     
@@ -162,4 +162,4 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>

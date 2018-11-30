@@ -11,14 +11,16 @@ use Illuminate\Support\Facedes\Session;
 
 class CostController extends Controller
 {
-    public static function GetCost()
+    public static function GetCost(Request $request)
     {
-        $costs = Cost::where('user_id', request()->session()->get('id'));
-
-        if($costs){
+        dd($request);
+        $loginauth = $request->session()->get('data');
+        
+        if ($loginauth != null) {
+            $costs = Cost::where('user_id', $loginauth->id)->get();
             return $costs;
-        }
-        else{
+
+        }else{
             return redirect('/');
         }
     }

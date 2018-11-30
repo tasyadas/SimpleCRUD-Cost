@@ -25,3 +25,4 @@ Route::POST('cost/update/{id}','CostController@UpdateCost');
 
 Route::POST('login','LoginController@LoginAuth');
 Route::GET('checkauth','LoginController@CheckAuth');
+Route::GET('logout','LoginController@LogoutAuth');

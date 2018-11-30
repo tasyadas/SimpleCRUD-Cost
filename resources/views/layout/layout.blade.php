@@ -17,20 +17,24 @@
 
 <nav>
     <ul>
-    @foreach(App\Http\Controllers\CostController::GetCost() as $cost)
-    @if ($cost == 0)
+      @if(session()->get('login_status') == true)
       <li>
-        <a href="/">Login</a>
-      </li>
+          <a href="/api/logout">Logout</a>
+        </li>
+        <li>
+          <a href="/home">Home</a>
+        </li>
       <li>
-        <a href="/home">Home</a>
-      </li>
-    @else
+          <a href="/pengeluaran">Pengeluaran</a>
+        </li>
+      @else
       <li>
-        <a href="/pengeluaran">Pengeluaran</a>
-      </li>
-    @endif
-    @endforeach
+          <a href="/">Login</a>
+        </li>
+        <li>
+          <a href="/home">Home</a>
+        </li>
+      @endif
     </ul>
 </nav>
 
