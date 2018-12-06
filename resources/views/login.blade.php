@@ -2,7 +2,16 @@
 
 @section('title','login')
 
+@section('style')
+<link rel="stylesheet" href="{{url('/')}}/css/login.css">
+@endsection
+
 @section('content')
+
+<div class="container">
+  <div class="putar"></div>
+  <div class="putar2"><img src="/img/logo2.png"></div>
+</div>
 
 <div class="form">
     <div class="form-panel one">
@@ -30,6 +39,7 @@
             </div>
         </form>
     </div>
+  </div>
 
 
 @endsection

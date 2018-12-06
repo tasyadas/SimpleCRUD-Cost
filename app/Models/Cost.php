@@ -9,6 +9,7 @@ class Cost extends Model
     protected $table = 'costs';
     protected $primaryKey = 'id';
     protected $fillable = [
+        'user_id',
         'name',
         'qty',
         'value',

@@ -11,11 +11,9 @@ use Illuminate\Support\Facedes\Session;
 
 class CostController extends Controller
 {
-    public static function GetCost(Request $request)
+    public static function GetCost()
     {
-        dd($request);
-        $loginauth = $request->session()->get('data');
-        
+        $loginauth = session()->get('data');
         if ($loginauth != null) {
             $costs = Cost::where('user_id', $loginauth->id)->get();
             return $costs;
@@ -32,13 +30,14 @@ class CostController extends Controller
         // foreach ($costs as $key) {
         //     $sum = $sum + $key->total;
         // }
-        // dd($sum);   
+        // dd($sum);
 
         return $sum;
     }
 
     public function CreateCost(Request $request)
     {
+        $user_id=session()->get('data')->id;
         $now = Carbon::now('Asia/Jakarta');
         $time = '[' . $now->micro . ']';
 
@@ -49,6 +48,7 @@ class CostController extends Controller
         $file->move(public_path($destinationPath), $filename);
 
         $create = Cost::create([
+            'user_id'=> $user_id,
             'name' => $request->name,
             'qty' => $request->qty,
             'value' => $request->value,

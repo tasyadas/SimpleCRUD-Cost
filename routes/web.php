@@ -27,4 +27,8 @@ Route::get('/welcome', function () {
     return view('welcome');
 });
 
+Route::get('/coba', function () {
+    return view('coba');
+});
+
 Route::Auth();
