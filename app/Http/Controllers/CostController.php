@@ -8,6 +8,7 @@ use App\Models\Cost;
 use Carbon\Carbon;
 use App\Http\Controllers\CostController;
 use Illuminate\Support\Facedes\Session;
+use Illuminate\Support\Facades\Storage;
 
 class CostController extends Controller
 {
@@ -64,7 +65,13 @@ class CostController extends Controller
 
     public function DeleteCost($id)
     {
-        $cost = Cost::find($id)->delete();
+        $cost = Cost::find($id);
+
+        if ($cost->image != null){
+            $cost->image = Storage::delete([$cost->image]);
+        }
+
+        $cost->delete();
         return redirect('/pengeluaran');
     }
 
@@ -78,6 +85,8 @@ class CostController extends Controller
         $cost->updated_at = Carbon::now('Asia/Jakarta');
 
         if ($request->image != null) {
+            $oldimg = $cost->image;
+            Storage::delete([$oldimg]);
             $now = Carbon::now('Asia/Jakarta');
             $time = '[' . $now->micro . ']';
 
